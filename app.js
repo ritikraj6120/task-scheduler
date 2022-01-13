@@ -6,7 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const { todoSchema, item } = require("./models/todo.js");
 const User = require('./models/User');
 const app = express();
-const {mongoDB} =require('./config/keys.js');
+const { mongoDB } = require('./config/keys.js');
 // middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
@@ -22,7 +22,7 @@ if (port == null || port == "") {
 	port = 3000;
 }
 
-mongoose.connect(mongoDB, {useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true,useFindAndModify:false})
+mongoose.connect(mongoDB)
 	.then((result) => app.listen(port))
 	.catch((err) => console.log(err));
 
@@ -56,7 +56,7 @@ app.post("/add", requireAuth, function (req, res) {
 	const newitem = new item({
 		todo: newtodo
 	});
-	User.findOneAndUpdate({ email: email }, { $push: { items: newitem} },
+	User.findOneAndUpdate({ email: email }, { $push: { items: newitem } },
 		function (err, doc) {
 			if (!err) {
 				res.redirect('/');
