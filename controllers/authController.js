@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const jwt = require('jsonwebtoken');
-const {secretkey} = require("../config/config.js");
+const {secretkey} = require("../config/keys.js");
 // handle errors
 const handleErrors = (err) => {
   console.log(err.message, err.code);

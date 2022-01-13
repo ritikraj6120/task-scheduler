@@ -1,13 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const authRoutes = require('./routes/authRoutes');
 const { todoSchema, item } = require("./models/todo.js");
 const User = require('./models/User');
 const app = express();
-const {mongoDB} =require('./config/config.js');
+const {mongoDB} =require('./config/keys.js');
 // middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
