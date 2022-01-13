@@ -22,10 +22,13 @@ if (port == null || port == "") {
 	port = 3000;
 }
 
-mongoose.connect(mongoDB)
-	.then((result) => app.listen(port))
-	.catch((err) => console.log(err));
-
+// mongoose.connect(mongoDB)
+// 	.then((result) => app.listen(port))
+// 	.catch((err) => console.log(err));
+mongoose.connect(mongoDB).then(
+	() => { app.listen(port) },
+	err => { console.log(err) }
+);
 
 app.get('*', checkUser);
 app.get("/about", function (req, res) {
