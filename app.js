@@ -6,7 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const { todoSchema, item } = require("./models/todo.js");
 const User = require('./models/User');
 const app = express();
-
+const {mongoDB} =require('./config/config.js');
 // middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
@@ -23,7 +23,6 @@ if (port == null || port == "") {
 	port = 3000;
 }
 
-const mongoDB = 'mongodb://127.0.0.1:27017/todolistDB';
 mongoose.connect(mongoDB, {useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true,useFindAndModify:false})
 	.then((result) => app.listen(port))
 	.catch((err) => console.log(err));
